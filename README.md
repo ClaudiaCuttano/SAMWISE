@@ -1,7 +1,7 @@
 # SAMWISE
 Official repository for the paper: "SAMWISE: Infusing wisdom in SAM2 for Text-Driven Video Segmentation". In this work we build upon the Segment-Anything 2 (SAM2) model and make it wiser, by empowering it with natural language understanding and explicit temporal modeling  at the feature extraction stage, without fine-tuning its weights, and without outsourcing modality interaction to external models. Our proposed method, SAMWISE, achieves state-of-the-art across various benchmarks, by adding a negligible overhead of just 4.2 M parameters.
 
-[![arXiv](https://img.shields.io/badge/arXiv-Preprint-red)]() **Paper Coming Soon!**
+**[📄[arXiv]](https://arxiv.org/abs/2411.17646)**
 
 
 🚀 **Code and Trained Models Coming Soon!** 🚀
