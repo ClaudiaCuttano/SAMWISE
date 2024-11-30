@@ -1,5 +1,15 @@
-# SAMWISE
+<div align="center">
+<img align="left" width="100" height="100" src="assets/logo.png" alt="">
+
+
+
+# SAMWISE: Infusing wisdom in SAM2 for Text-Driven Video Segmentation
+
+[Claudia Cuttano](), [Gabriele Trivigno](), [Gabriele Rosi](), [Carlo Masone](), [Giuseppe Averta]()
+
+</div>
 Official repository for the paper: "SAMWISE: Infusing wisdom in SAM2 for Text-Driven Video Segmentation". In this work we build upon the Segment-Anything 2 (SAM2) model and make it wiser, by empowering it with natural language understanding and explicit temporal modeling  at the feature extraction stage, without fine-tuning its weights, and without outsourcing modality interaction to external models. Our proposed method, SAMWISE, achieves state-of-the-art across various benchmarks, by adding a negligible overhead of just 4.2 M parameters.
+
 
 **[📄[arXiv]](https://arxiv.org/abs/2411.17646)**
 
@@ -22,5 +32,5 @@ Our approach integrates natural language knowledge and temporal cues for <b>stre
 
 SAMWISE (our model, not the hobbit) segments objects from The Lord of the Rings in zero-shot—no extra training, just living up to its namesake! 🧙‍♂️✨
 
-![Local GIF](./assets/lotr.gif)
+![Local GIF](./assets/video_four.gif)
 
