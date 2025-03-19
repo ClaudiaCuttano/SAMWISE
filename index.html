@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SAMWISE: Infusing Wisdom in SAM2 for Text-Driven Video Segmentation">
+  <meta name="keywords" content="Referring Video Object Segmentation, Segment Anything, SAM, SAM2, CVPR2025">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAMWISE: Infusing Wisdom in SAM2 for Text-Driven Video Segmentation</title>
+    <!-- Bootstrap -->
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<!--  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>-->
+<!--  <script>-->
+<!--    window.dataLayer = window.dataLayer || [];-->
+
+<!--    function gtag() {-->
+<!--      dataLayer.push(arguments);-->
+<!--    }-->
+
+<!--    gtag('js', new Date());-->
+
+<!--    gtag('config', 'G-PYVRSFMDRL');-->
+<!--  </script>-->
+      <link href="static/css/bootstrap-4.4.1.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/index_mg.css">
+
+  <link rel="icon" href="./static/images/logo.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/script_mg.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <div class="title-container">
+            <img src="static/images/logo.png" alt="Paper Logo" class="paper-logo">
+          <h1 class="title is-1 publication-title">SAMWISE: Infusing Wisdom in SAM2 for Text-Driven Video Segmentation</h1>
+          </div>
+          <div class="is-size-5 publication-authors">
+          <h2 class="subtitle is-3">CVPR 2025</h2>
+        <span class="author-block">
+          <a href="https://scholar.google.it/citations?user=W7lNKNsAAAAJ&hl=en">Claudia Cuttano</a><sup>1</sup>,</span>
+        <span class="author-block">
+          <a href="https://scholar.google.com/citations?user=JXf_iToAAAAJ&hl=en">Gabriele Trivigno</a><sup>1</sup>,</span>
+        <span class="author-block">
+          <a href="https://scholar.google.com/citations?user=8AfX1GcAAAAJ&hl=en">Gabriele Rosi</a><sup>1,2</sup>,
+        </span>
+        <span class="author-block">
+          <a href="https://scholar.google.it/citations?user=cM3Iz_4AAAAJ&hl=en">Carlo Masone</a><sup>1,2</sup>,
+        </span>
+        <span class="author-block">
+          <a href="https://scholar.google.it/citations?user=i4rm0tYAAAAJ&hl=en">Giuseppe Averta</a><sup>1,2</sup>,
+        </span>
+      </div>
+
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Politecnico di Torino,</span>
+            <span class="author-block"><sup>2</sup>Focoos AI</span>
+          </div>
+    <div class="is-size-5 publication-authors">
+    <span class="author-block">
+    <small><tt>claudia.cuttano@polito.it</tt></small>
+
+    </span>
+    </div>
+          <div class="column has-text-centered">
+                <span class="link-block">
+                    <a href="https://arxiv.org/pdf/2411.17646" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                    </a>
+                </span>
+              <span class="link-block">
+                <a href=https://arxiv.org/abs/2411.17646
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+            <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark coming-soon">
+                    <span class="icon">
+                        <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Demo</span>
+                </a>
+            </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/ClaudiaCuttano/SAMWISE"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+    <div class="hero-body" style="padding-inline: 250px">
+      <video id="teaser" autoplay muted loop playsinline style="width: 100%; height: auto;">
+        <source src="./static/videos/video_four.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+      </h2>
+    </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Referring Video Object Segmentation (RVOS) relies on natural language expressions to segment an object in a video clip. Existing methods restrict reasoning either to independent short clips, losing global context, or process the entire video offline,
+            impairing their application in a streaming fashion. In this work, we aim to surpass these limitations and design an RVOS method capable
+            of effectively operating in streaming-like scenarios while retaining contextual
+            information from past frames. We build upon the Segment-Anything 2 (SAM2) model,
+            that provides robust segmentation and tracking capabilities and is naturally suited
+            for streaming processing. <b> We make SAM2 wiser, by empowering it with natural language
+            understanding and explicit temporal modeling at the feature extraction stage,
+            without fine-tuning its weights, and without outsourcing modality interaction to
+            external models. </b> To this end, we introduce a novel adapter module that injects temporal information
+            and multi-modal cues in the feature extraction process. We further reveal the
+            phenomenon of tracking bias in SAM2 and propose a learnable module to adjust its
+            tracking focus when the current frame features suggest a new object more aligned
+            with the caption. Our proposed method, SAMWISE, achieves state-of-the-art across
+            various benchmarks, by adding a negligible overhead of just 4.9 M parameters.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <!--/ Abstract. -->
+
+    <!-- scene_selector -->
+<section class="section">
+  <div class="columns is-centered has-text-centered">
+      <div class="columns is-centered">
+          <div class="container" style="width:100%">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="title is-3">Play with SAMWISE</h2>
+                <hr style="margin-top:0px">
+
+                <b>Click the thumbnails below to select a video.</b>
+                <div class="base-row" style="display: flex">
+                  <button class="slide-arrow" id="slide-arrow-prev" onclick="slide_left()">
+                      &#8249;
+                  </button>
+                    <div class="base-col thumbnail-col">
+                        <button class="thumbnail-btn" id="thumb-path5" style="height: 200px" onclick="select_one_scene('path5')">
+                            <div class = "thumbnail-container">
+                                <img src="static/videos/motorcycles/00003.jpg" class="thumbnails" height="100px" width="100px" />
+                                Riders.
+                                <div class="play-icon">&#9658;</div>
+                          </div>
+                        </button>
+                    </div>
+
+                  <div class="base-row thumbnail-row" , id="thumbnails-scroll">
+                    <div class="base-col thumbnail-col">
+                        <button class="thumbnail-btn" id="thumb-path6" style="height: 200px" onclick="select_one_scene('path6')">
+                            <div class = "thumbnail-container">
+                                <img src="static/videos/cars/00027.jpg" class="thumbnails" height="100px" width="100px" />
+                             <div class="play-icon">&#9658;</div>
+                          </div>
+                         Street view.
+                        </button>
+                    </div>
+                    <div class="base-col thumbnail-col">
+                      <button class="thumbnail-btn" id="thumb-path2" style="height: 200px" onclick="select_one_scene('path2')">
+                         <div class = "thumbnail-container">
+                            <img src="static/videos/motorcross/00036.jpg" class="thumbnails" height="100px" width="100px" />
+                            <div class="play-icon">&#9658;</div>
+                          </div>
+                          Downhill.
+                      </button>
+                    </div>
+                    <div class="base-col thumbnail-col">
+                      <button class="thumbnail-btn" id="thumb-path3" style="height: 200px" onclick="select_one_scene('path3')">
+                          <div class = "thumbnail-container">
+                            <img src="static/videos/cats_playing/00013.jpg" class="thumbnails" height="100px" width="100px" />
+                            <div class="play-icon">&#9658;</div>
+                          </div>
+                          Cats playing.
+                      </button>
+                    </div>
+
+                    <div class="base-col thumbnail-col">
+                      <button class="thumbnail-btn" id="thumb-path4" style="height: 200px" onclick="select_one_scene('path4')">
+                          <div class = "thumbnail-container">
+                              <img src="static/videos/living_room/00039.jpg" class="thumbnails" height="100px" width="100px" />
+                               <div class="play-icon">&#9658;</div>
+                          </div>
+                          Living room.
+                      </button>
+                    </div>
+                    <div class="base-col thumbnail-col">
+                        <button class="thumbnail-btn" id="thumb-path1" style="height: 200px" onclick="select_one_scene('path1')">
+                           <div class = "thumbnail-container">
+                                <img src="static/videos/person_and_two_bikes/00001.jpg" class="thumbnails" height="100px" width="100px" />
+                               <div class="play-icon">&#9658;</div>
+                          </div>
+                               Parking bike.
+                        </button>
+                    </div>
+
+
+                  </div>
+                  <button class="slide-arrow" id="slide-arrow-next" onclick="slide_right()">
+                      &#8250;
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+  <!-- 1st sequence -->
+  <div id="path1" class="container text-center mt-4 scene">
+      <!-- Clickable annotations -->
+        <div class="instruction-box">
+            <p><i class="fas fa-mouse-pointer"></i> Click on a caption to see how SAMWISE segments the referred object.</p>
+        </div>
+
+      <div class="caption-container">
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path1','path1_1')">The individual who is cycling</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path1','path1_2')">Parked motorcycle in the distance</button>
+
+      </div>
+      <!-- Not annotated Video -->
+      <div class="video-container raw-video">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/person_and_two_bikes/original.mp4" type="video/mp4">
+          </video>
+      </div>
+
+      <!-- Annotated videos -->
+      <div id="path1_1" class="video-container annotated-scene">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/person_and_two_bikes/person.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div id="path1_2" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/person_and_two_bikes/distance_bike.mp4" type="video/mp4">
+        </video>
+        </div>
+
+  </div>
+
+  <!-- 2nd sequence -->
+  <div id="path2" class="container text-center mt-4 scene">
+        <div class="instruction-box">
+            <p><i class="fas fa-mouse-pointer"></i> Click on a caption to see how SAMWISE segments the referred object.</p>
+        </div>
+      <!-- Clickable annotations -->
+      <div class="caption-container">
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path2','path2_1')">The second place rider</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path2','path2_2')">The bycicle in second place</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path2','path2_3')">The lead position</button>
+
+      </div>
+      <!-- Not annotated Video -->
+      <div class="video-container raw-video">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/motorcross/original_1.mp4" type="video/mp4">
+          </video>
+      </div>
+
+      <!-- Annotated videos -->
+      <div id="path2_1" class="video-container annotated-scene">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/motorcross/the_second_1.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div id="path2_2" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/motorcross/bike_of_tjhe_second_1.mp4" type="video/mp4">
+        </video>
+        </div>
+      <div id="path2_3" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/motorcross/the_leader_1.mp4" type="video/mp4">
+        </video>
+      </div>
+
+  </div>
+
+<!-- 3rd sequence -->
+  <div id="path3" class="container text-center mt-4 scene">
+      <!-- Clickable annotations -->
+        <div class="instruction-box">
+            <p><i class="fas fa-mouse-pointer"></i> Click on a caption to see how SAMWISE segments the referred object.</p>
+        </div>
+      <p class="disclaimer"><i class="fas fa-info-circle"></i> Note: Some objects may become temporarily occluded during the video.</p>
+
+      <div class="caption-container">
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path3','path3_2')">The cat that is playing with the feather toy</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path3','path3_3')">The cat without interest in the toy walking a few steps to the left</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path3','path3_1')">The hand waving the feather toy for the cat</button>
+
+      </div>
+      <!-- Not annotated Video -->
+      <div class="video-container raw-video">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/cats_playing/original.mp4" type="video/mp4">
+          </video>
+      </div>
+
+      <!-- Annotated videos -->
+      <div id="path3_1" class="video-container annotated-scene">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/cats_playing/human.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div id="path3_2" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/cats_playing/cat_play.mp4" type="video/mp4">
+        </video>
+        </div>
+      <div id="path3_3" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/cats_playing/not_move.mp4" type="video/mp4">
+        </video>
+      </div>
+  </div>
+
+<!-- 5th sequence -->
+  <div id="path5" class="container text-center mt-4 scene">
+      <!-- Clickable annotations -->
+        <div class="instruction-box">
+            <p><i class="fas fa-mouse-pointer"></i> Click on a caption to see how SAMWISE segments the referred object.</p>
+        </div>
+      <div class="caption-container">
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path5','path5_4')">The individual dismounting from the motorcycle and standing next to it</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path5','path5_1')">Parked black car</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path5','path5_3')">The unmoving white vehicle parked in place</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path5','path5_2')">A woman holding a plastic bag, taking photos with her other hand</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path5','path5_5')">The man standing by, tightly holding the railing, watching the show </button>
+
+      </div>
+      <!-- Not annotated Video -->
+      <div class="video-container raw-video">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/motorcycles/original.mp4" type="video/mp4">
+          </video>
+      </div>
+
+      <!-- Annotated videos -->
+      <div id="path5_1" class="video-container annotated-scene">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/motorcycles/black_car.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div id="path5_2" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/motorcycles/woman.mp4" type="video/mp4">
+        </video>
+        </div>
+      <div id="path5_3" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/motorcycles/white_car.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div id="path5_4" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/motorcycles/dismounting.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div id="path5_5" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/motorcycles/man.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div id="path5_6" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/motorcycles/man.mp4" type="video/mp4">
+        </video>
+      </div>
+
+  </div>
+<!-- 4th sequence -->
+  <div id="path4" class="container text-center mt-4 scene">
+      <!-- Clickable annotations -->
+      <div class="instruction-box">
+            <p><i class="fas fa-mouse-pointer"></i> Click on a caption to see how SAMWISE segments the referred object.</p>
+        </div>
+      <div class="caption-container">
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path4','path4_1')">The guy pedaling the bicycle</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path4','path4_2')">The male child moving leftward while guiding his bicycle</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path4','path4_3')">The bicycle moving back and forth in the living room</button>
+
+      </div>
+      <!-- Not annotated Video -->
+      <div class="video-container raw-video">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/living_room/original.mp4" type="video/mp4">
+          </video>
+      </div>
+
+      <!-- Annotated videos -->
+      <div id="path4_1" class="video-container annotated-scene">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/living_room/male_individual.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div id="path4_2" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/living_room/young.mp4" type="video/mp4">
+        </video>
+        </div>
+      <div id="path4_3" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/living_room/bike.mp4" type="video/mp4">
+        </video>
+      </div>
+
+  </div>
+
+ <div id="path6" class="container text-center mt-4 scene">
+      <!-- Clickable annotations -->
+     <div class="instruction-box">
+            <p><i class="fas fa-mouse-pointer"></i> Click on a caption to see how SAMWISE segments the referred object.</p>
+     </div>
+     <p class="disclaimer"><i class="fas fa-info-circle"></i> Note: Some objects may become temporarily occluded during the video.</p>
+
+      <div class="caption-container">
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path6','path6_3')">The vehicle parked on the left side of the road</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path6','path6_1')">The girls heading to the left side as they walk</button>
+          <button type="button" class="caption-button"  onclick="handleCaptionClick('path6','path6_2')">The second car moving away to the left</button>
+
+      </div>
+      <!-- Not annotated Video -->
+      <div class="video-container raw-video">
+      <div class="video-container raw-video">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/cars/original.mp4" type="video/mp4">
+          </video>
+      </div>
+
+      <!-- Annotated videos -->
+      <div id="path6_1" class="video-container annotated-scene">
+          <video width="80%" autoplay muted loop>
+              <source src="static/videos/cars/girls.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div id="path6_2" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/cars/left.mp4" type="video/mp4">
+        </video>
+        </div>
+      <div id="path6_3" class="video-container annotated-scene">
+        <video width="80%" autoplay muted loop>
+          <source src="static/videos/cars/parked_left.mp4" type="video/mp4">
+        </video>
+      </div>
+
+
+  </div>
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Bibtex</h2>
+    <pre><code>@misc{cuttano2024samwiseinfusingwisdomsam2,
+      title={SAMWISE: Infusing wisdom in SAM2 for Text-Driven Video Segmentation},
+      author={Claudia Cuttano and Gabriele Trivigno and Gabriele Rosi and Carlo Masone and Giuseppe Averta},
+      year={2024},
+      eprint={2411.17646},
+      url={https://arxiv.org/abs/2411.17646},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+    <p>
+      This website is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License </a>.
+    </p>
+  </div>
+</section>
+</footer>
+
+</body>
+</html>

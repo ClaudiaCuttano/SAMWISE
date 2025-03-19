@@ -1,0 +1,328 @@
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+.tab {
+flex-grow: 1; /* 使每个标签平均分配可用空间 */
+text-align: center; /* 文字居中 */
+cursor: pointer;
+padding: 10px 20px;
+margin: 0 10px;
+background-color: #f0f0f0;
+border: 2px solid transparent;
+border-radius: 5px;
+transition: background-color 0.3s, border-color 0.3s;
+}
+
+.tab:hover {
+background-color: #e0e0e0;
+}
+
+.tab.active {
+background-color: #fff;
+border-color: #007bff;
+color: #007bff;
+}
+
+.thumbnails {
+  width: 90%;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thumbnail-btn {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: #fff;
+  padding-bottom: 8px;
+  border-radius: 10px;
+}
+
+.thumbnail-btn:hover   {
+  background-color: #eaeaea;
+}
+
+.active-btn   {
+  background-color: #d9e8ec;
+}
+
+
+.thumbnail-row {
+    display: flex;
+    overflow-x: auto; /* Allow smooth scrolling */
+    overflow-y: hidden; /* Prevents vertical scrolling */
+
+    scroll-behavior: smooth;
+    width: 90%;   /* Makes thumbnails larger */
+    margin: 0 auto;
+    align-items: center; /* Aligns images properly */
+    gap: 15px; /* Optional spacing between thumbnails */
+    padding-bottom: 10px; /* Prevents cut-off */
+    flex-wrap: nowrap;
+    scrollbar-width: thin; /* Makes scrollbar visible in Firefox */
+    flex: 1
+
+}
+
+
+.thumbnail-col {
+    flex: 0 0 auto; /* Ensures each thumbnail is the same size */
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnail-btn.selected {
+    border: 3px solid #007bff; /* Blue border */
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+.thumbnail-container {
+    position: relative;
+    width: 100%;
+}
+
+.thumbnail-container img {
+    width: 100%; /* Ensures all images fill the same space */
+    height: auto; /* !* Maintains aspect ratio *!*/
+    object-fit: cover; /* Ensures images stay the same size */
+    border-radius: 5px; /* Optional: Slight rounding for professionalism */
+}
+
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* So clicks still trigger the button */
+}
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .2s;
+  transition: .2s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .2s;
+  transition: .2s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(36px);
+  -ms-transform: translateX(36px);
+  transform: translateX(36px);
+}
+
+.slide-arrow {
+  display: flex;
+  align-items: center;  /* Ensures vertical alignment */
+  justify-content: center; /* Centers the symbol horizontally */
+  margin-top: 62px;
+  padding-bottom: 5px;
+  height: 3rem;
+  width: 2%;
+  background-color: #6dbdff;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  opacity: 1.0;
+  transition: background-color 100ms;
+  border-radius: 2rem;
+}
+
+.slide-arrow:hover,
+.slide-arrow:focus {
+  background-color: #2196F3;
+}
+
+#slide-arrow-prev {
+  float: left;
+  left: 0;
+  margin-right: 1%;
+}
+
+#slide-arrow-next {
+  float: right;
+  right: 0;
+  margin-left: 1%;
+}
+
+/* Ensure consistent font rendering */
+.slide-arrow::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; /* Prevents inconsistencies */
+}
+
+#main-video {
+  width: 90%;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+}
+
+.caption-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* More space for longer captions */
+    gap: 5px;
+    justify-content: center;
+    max-width: 1050px; /* Keeps it professional and aligned */
+    margin: 0 auto 15px;
+    padding: 1px;
+}
+
+.caption-button {
+    padding: 14px 18px;
+    font-size: 18px; /* Readable size */
+    font-weight: 600;
+    color: #ffffff; /* White text for contrast */
+    background: linear-gradient(135deg, #0056b3, #003f7f); /* Professional blue gradient */
+    border: 2px solid transparent; /* Keeps a clean look */
+    border-radius: 8px;
+    text-align: center;
+    white-space: normal; /* Allows wrapping */
+    word-wrap: break-word; /* Ensures long captions wrap */
+    line-height: 1.4;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.caption-button:hover {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Slightly lighter on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 91, 187, 0.3);
+}
+
+.caption-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.instruction-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa; /* Light neutral background for clarity */
+    color: #333; /* Dark grey for readability */
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 850px; /* Wider to fit the text in one line */
+    min-height: 50px; /* Consistent height */
+    margin: 20px auto;
+    border-left: 4px solid #007bff; /* Subtle blue accent for professionalism */
+    text-align: center;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.instruction-box i {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #007bff; /* Matches the left border accent */
+}
+
+.notice-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff3cd; /* Light yellow for a soft warning */
+    color: #856404; /* Dark yellow-brown for readability */
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border-left: 4px solid #ffc107; /* Yellow accent */
+    max-width: 750px;
+    margin: 10px auto;
+}
+.notice-box i {
+    margin-right: 8px;
+    font-size: 16px;
+    color: #ffc107;
+}
+
+.coming-soon {
+    position: relative; /* Required for tooltip positioning */
+    cursor: default;
+}
+
+.coming-soon::after {
+    content: "Coming Soon";
+    visibility: hidden;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.coming-soon:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+.title-container {
+    display: flex;
+    align-items: center; /* Aligns the logo and title vertically */
+    justify-content: center; /* Centers the whole title + logo block */
+    gap: 15px; /* Space between logo and title */
+}
+
+.paper-logo {
+    height: 130px; /* Adjust the size as needed */
+    width: auto;
+}
