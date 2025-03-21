@@ -259,7 +259,9 @@ input:checked + .slider:before {
     text-align: center;
     user-select: none;
     pointer-events: none;
-    white-space: nowrap; /* Prevents text from wrapping */
+    white-space: normal; /* Allows text to wrap */
+    word-wrap: break-word; /* Ensures long words break properly */
+    overflow-wrap: break-word; /* Alternative for word breaking */
 }
 
 .instruction-box i {
