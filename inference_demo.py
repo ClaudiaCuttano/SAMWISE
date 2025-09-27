@@ -25,6 +25,8 @@ from datasets.transform_utils import VideoEvalDataset
 from torch.utils.data import DataLoader
 from os.path import join
 from datasets.transform_utils import vis_add_mask
+from torch.serialization import safe_globals
+import gdown
 
 
 # colormap
@@ -49,7 +51,8 @@ def main(args):
 
     start_time = time.time()
     # model
-    model = build_samwise(args)
+    with safe_globals([argparse.Namespace]): 
+        model = build_samwise(args)
     device = torch.device(args.device)
     model.to(device)
 
@@ -75,7 +78,7 @@ def extract_frames_from_mp4(video_path):
         print(f'{extract_folder} already exists, using frames in that folder')
     else:
         os.makedirs(extract_folder)
-        extract_cmd = "ffmpeg -i {in_path} -loglevel error -vf fps=10 {folder}/frame_%05d.png"
+        extract_cmd = "ffmpeg -i {in_path} -loglevel error -vsync 0 {folder}/frame_%05d.png"
         ret = os.system(extract_cmd.format(in_path=video_path, folder=extract_folder))
         if ret != 0:
             print('Something went wrong extracting frames with ffmpeg')
@@ -160,8 +163,17 @@ def inference(args, model, save_path_prefix, in_path, text_prompts):
             clip.write_videofile(join(save_path_prefix, text_prompt.replace(' ', '_')+'.mp4'), codec='libx264')
 
     print(f'Output masks and videos can be found in {save_path_prefix}')
-    return 
+    return
 
+def download_checkpoint(file_id, out_path):
+    if os.path.exists(out_path):
+        return
+    url = f"https://drive.google.com/uc?id={file_id}"
+    print(f"Downloading {file_id} → {out_path} …")
+    try:
+        gdown.download(url, out_path, quiet=False)
+    except Exception as e:
+        print(f"Error during download {out_path}: {e}")
 
 def check_args(args):
     assert os.path.isfile(args.input_path) or os.path.isdir(args.input_path), f'The provided path {args.input_path} does not exist'
@@ -172,7 +184,8 @@ def check_args(args):
         if ext in ['.jpg', '.png', '.jpeg']: 
             args.image_level = True
             pretrained_model = 'pretrain/pretrained_model.pth'
-            pretrained_model_link = 'https://drive.google.com/file/d/1gRGzARDjIisZ3PnCW77Y9TMM_SbV8aaa/view?usp=drive_link'
+            # https://drive.google.com/file/d/1gRGzARDjIisZ3PnCW77Y9TMM_SbV8aaa/view?usp=drive_link
+            pretrained_model_id = "1gRGzARDjIisZ3PnCW77Y9TMM_SbV8aaa"
             print(f'Specified path is an image, using image-level configuration')
 
     if not args.image_level: # it's video inference
@@ -180,17 +193,19 @@ def check_args(args):
         args.HSA = True
         args.use_cme_head = False
         pretrained_model = 'pretrain/final_model_mevis.pth'
-        pretrained_model_link = 'https://drive.google.com/file/d/1Molt2up2bP41ekeczXWQU-LWTskKJOV2/view?usp=sharing'
+        # https://drive.google.com/file/d/1Molt2up2bP41ekeczXWQU-LWTskKJOV2/view?usp=sharing
+        pretrained_model_id = "1Molt2up2bP41ekeczXWQU-LWTskKJOV2"
         print(f'Specified path is a video or folder with frames, using video-level configuration')
         
     if args.resume == '':
         args.resume = pretrained_model
-
-    assert os.path.isfile(args.resume), f"You should download the model checkpoint first. Run 'cd pretrain &&  gdown --fuzzy {pretrained_model_link}"
+    
+    os.makedirs("pretrain", exist_ok=True)
+    download_checkpoint(pretrained_model_id, pretrained_model)
 
 
 if __name__ == '__main__':
-    if torch.cuda.get_device_properties(0).major >= 8:
+    if torch.cuda.is_available() and torch.cuda.get_device_properties(0).major >= 8:
         # turn on tfloat32 for Ampere GPUs (https://pytorch.org/docs/stable/notes/cuda.html#tensorfloat-32-tf32-on-ampere-devices)
         torch.backends.cuda.matmul.allow_tf32 = True
         torch.backends.cudnn.allow_tf32 = True

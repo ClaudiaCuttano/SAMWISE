@@ -132,6 +132,8 @@ Run the script:
 python inference_demo.py --input_path <your_input> --text_prompts <text_prompt 1> <text_prompt 2>
 ```
 
+💡 Tip: If you don't have a GPU or prefer to run on CPU, add the --device "cpu" flag
+
 Examples:
 ```
 # On a single image

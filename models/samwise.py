@@ -59,6 +59,8 @@ class SAMWISE(nn.Module):
         self.cme_decision_window = args.cme_decision_window # minimum number of frames between each CME application
         self.switch_mem = args.switch_mem
 
+        self.device = args.device
+
 
     def forward(self, samples, captions, targets):
         """ The forward expects a NestedTensor, which consists of:
@@ -143,8 +145,8 @@ class SAMWISE(nn.Module):
 
     def preprocess_text_features(self, captions):
         batch_encoding_text = self.tokenizer(captions, add_special_tokens=True, padding=True)
-        input_ids = torch.tensor(batch_encoding_text['input_ids']).cuda()
-        attention_mask = torch.tensor(batch_encoding_text['attention_mask']).eq(0).cuda()
+        input_ids = torch.tensor(batch_encoding_text['input_ids']).to(self.device)
+        attention_mask = torch.tensor(batch_encoding_text['attention_mask']).eq(0).to(self.device)
         text_encoder = self.text_encoder.model.encoder.sentence_encoder
         has_pads = (torch.tensor(input_ids.device.type == "xla") or attention_mask.any())
         x, encoder_embedding = text_encoder.forward_embedding(input_ids, None)
